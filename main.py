@@ -2,6 +2,8 @@ from flask import Flask, request, make_response, redirect, render_template
 
 app = Flask(__name__,template_folder='templates')
 
+todos = ["TODOS 1", "TODOS 2", "TODOS 3", "TODOS 4"]
+
 @app.route("/")
 def index():
     #getting user ip
@@ -17,5 +19,11 @@ def index():
 @app.route("/hello")
 def hello():
     user_ip = request.cookies.get("user_ip")
+    context = {
+        "user_ip": user_ip,
+        "todos": todos,
+    }
 
-    return render_template("hello.html", user_ip = user_ip)
+    #the "**" is used to expand all the content of context and make easier to handled it in jinja2
+    return render_template("hello.html", **context)
+    
