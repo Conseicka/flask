@@ -4,6 +4,11 @@ app = Flask(__name__,template_folder='templates', static_folder='./static')
 
 todos = ["Comprar cafe", "Enviar solicitud de compra", "Entregar un video"]
 
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template("404.html", error=error)
+
 @app.route("/")
 def index():
     #getting user ip
