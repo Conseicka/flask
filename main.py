@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, redirect, render_template, session
+from flask import Flask, request, make_response, redirect, render_template, session, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
@@ -52,6 +52,8 @@ def hello():
         username = login_form.username.data
         session["username"] = username
         
+        flash("Nombre de usuario registrado con exito!")
+
         return redirect("/hello")
 
     #the "**" is used to expand all the content of context and make easier to handled it in jinja2
