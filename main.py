@@ -8,6 +8,7 @@ from flask import redirect
 from flask import make_response
 from flask import render_template
 from flask_bootstrap import Bootstrap
+from flask_login import login_required
 from app import create_app
 from app.forms import LoginForm
 from app.firestore_service import get_users, get_todos
@@ -43,6 +44,7 @@ def index():
     return response
 
 @app.route("/hello", methods=["GET"])
+@login_required
 def hello():
     user_ip = session.get("user_ip")
     username = session.get("username")
