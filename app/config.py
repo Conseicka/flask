@@ -1,2 +1,3 @@
 class Config:
     SECRET_KEY = "SUPER SECRET"
+    #PRESERVE_CONTEXT_ONEXCEPTION = False

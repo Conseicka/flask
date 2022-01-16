@@ -3,12 +3,11 @@
 
 {% block title %}
     {{ super() }}
-    404
-{% endblock %}
+  {% endblock %}
 
 
 {% block content %}
-    <div>
+    <div class="container">
         {{ wtf.quick_form(login_form) }}
     </div>
 {% endblock %}
