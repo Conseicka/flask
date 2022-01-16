@@ -10,6 +10,7 @@ from flask import render_template
 from flask_bootstrap import Bootstrap
 from app import create_app
 from app.forms import LoginForm
+from app.firestore_service import get_users, get_todos
 
 
 app= create_app()
@@ -48,10 +49,22 @@ def hello():
 
     context = {
         "user_ip": user_ip,
-        "todos": todos,
+        "todos": get_todos(user_id=username),
         "username": username,
     }
 
+    users = get_users()
+    to_does=get_todos(user_id=username)
+    for to_do in to_does:
+        print(to_do.to_dict()['descripcion'])
+
+
+
+    for user in users:
+        to_does=get_todos(user_id=username)
+       
+        print(user.id)
+        print(user.to_dict()["password"])
     #the "**" is used to expand all the content of context and make easier to handled it in jinja2
     return render_template("hello.html", **context)
     
